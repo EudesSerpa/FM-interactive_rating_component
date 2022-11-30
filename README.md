@@ -35,8 +35,8 @@ Users should be able to:
 
 ### Links
 
-- Repository URL: [Github](https://your-solution-url.com)
-- See demo: [Demo](https://your-live-site-url.com)
+- Repository URL: [Github](https://github.com/EudesSerpa/FM-interactive_rating_component/)
+- See demo: [Demo](https://fm-interactive-rating-challenge.netlify.app/)
 
 ## My process
 
