@@ -1,0 +1,302 @@
+@import url('https://fonts.googleapis.com/css2?family=Overpass:wght@400;700&display=swap');
+
+:root {
+  --clr-primary: hsl(25, 97%, 53%);
+
+  --clr-text-high-highlight: hsl(0, 0%, 100%);
+  /*white*/
+  --clr-text-medium-highlight: hsl(217, 12%, 63%);
+  /*light-grey*/
+  --clr-text-low-highlight: hsl(216, 12%, 54%);
+  /*medium-grey*/
+  --clr-surface: hsl(213, 19%, 18%);
+  --clr-surface-variant: hsl(213, 21%, 23%);
+  /*dark-blue*/
+  --clr-background: hsl(216, 12%, 8%);
+  /*very-dark-blue*/
+
+
+  /* Typography */
+  --fs-base: .9375rem;
+  --ff-base: 'Overpass', sans-serif;
+  --fw-regular: 400;
+  --fw-bold: 700;
+}
+
+/* Custom reset CSS from: https://www.joshwcomeau.com/css/custom-css-reset/ */
+/*
+  1. Use a more-intuitive box-sizing model.
+*/
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/*
+  2. Remove default margin
+*/
+* {
+  margin: 0;
+}
+
+/*
+  3. Allow percentage-based heights in the application
+*/
+html,
+body {
+  height: 100%;
+}
+
+/*
+  Typographic tweaks!
+  4. Add accessible line-height
+  5. Improve text rendering
+*/
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/*
+  6. Improve media defaults
+*/
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+/*
+  7. Remove built-in form typography styles
+*/
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/*
+  8. Avoid text overflows
+*/
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+/*
+  9. Create a root stacking context
+*/
+#root,
+#__next {
+  isolation: isolate;
+}
+
+
+/* General styles */
+body {
+  display: grid;
+  place-content: center;
+  margin: 1rem;
+  font: var(--fw-regular) var(--fs-base) var(--ff-base);
+  color: var(--clr-text-low-highlight);
+  background-color: var(--clr-background);
+}
+
+/* Utilities */
+.visually-hidden {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+
+/* Rating and Thanks card */
+.card {
+  --content-spacing: 1rem;
+
+  display: grid;
+  gap: var(--content-spacing);
+  max-width: 330px;
+  padding: 1.5rem 1.7rem 2rem;
+  margin: 0 auto;
+  border-radius: .8rem;
+  font-size: .875rem;
+  background-color: var(--clr-surface);
+}
+
+.card__star-icon {
+  width: 34px;
+  aspect-ratio: 1;
+  padding: .65rem;
+  border-radius: 50%;
+  background-color: var(--clr-surface-variant);
+}
+
+.card__title {
+  font-size: 1.5rem;
+  color: var(--clr-text-high-highlight);
+}
+
+.form {
+  display: grid;
+  gap: var(--content-spacing);
+}
+
+.form__rating-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--content-spacing);
+  border: none;
+  padding: 0;
+  margin-block: .5rem;
+}
+
+.form__item {
+  display: grid;
+  place-items: center;
+}
+
+.form__input[type="radio"] {
+  position: relative;
+  appearance: none;
+  width: 2.6rem;
+  aspect-ratio: 1;
+  margin: 0;
+  border: none;
+  border-radius: 50%;
+  color: inherit;
+  background-color: var(--clr-surface-variant);
+  cursor: pointer;
+  transition: background-color .3s ease-in-out, color .3s ease-in-out;
+}
+
+.form__input[type="radio"]::after {
+  content: attr(data-rating);
+  position: absolute;
+  top: 52.5%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  line-height: normal;
+}
+
+.form__input[type="radio"]:is(:checked, :hover, :focus-visible) {
+  color: var(--clr-text-high-highlight);
+}
+
+.form__input[type="radio"]:is(:hover, :focus-visible) {
+  background-color: var(--clr-primary);
+}
+
+.form__input[type="radio"]:is(:checked) {
+  background-color: var(--clr-text-medium-highlight);
+}
+
+.btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: .75rem;
+  padding: .75em 1.5em;
+  border: none;
+  border-radius: 1.6rem;
+  font-size: .875rem;
+  font-weight: var(--fw-bold);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.btn--primary {
+  color: var(--clr-text-high-highlight);
+  background-color: var(--clr-primary);
+  letter-spacing: .1rem;
+  text-transform: uppercase;
+  transition: background-color .3s ease-in-out, color .3s ease-in-out;
+}
+
+.btn--primary:is(:hover, :focus-visible) {
+  color: var(--clr-primary);
+  background-color: var(--clr-text-high-highlight);
+}
+
+/* Rating card */
+#rating-card {
+  transition: all .3s ease-in;
+}
+
+#rating-card.hide {
+  position: absolute;
+  scale: 0;
+}
+
+/* Thanks card */
+#thanks-card {
+  position: absolute;
+  scale: 0;
+}
+
+#thanks-card.show {
+  transition: all .3s ease-in;
+  position: initial;
+  scale: 1;
+}
+
+.card--centered {
+  text-align: center;
+}
+
+.card__header {
+  display: grid;
+  gap: var(--content-spacing);
+}
+
+.card__image {
+  width: 50%;
+  margin: .5rem auto 0;
+}
+
+.card__rating {
+  width: fit-content;
+  margin: .3rem auto .5rem;
+  padding: .4rem .6rem .2rem;
+  border-radius: 1.6rem;
+  color: var(--clr-primary);
+  background-color: var(--clr-surface-variant);
+}
+
+
+/* Attribution */
+.attribution {
+  margin-block: 1rem;
+  text-align: center;
+}
+
+.attribution a {
+  color: hsl(228, 45%, 44%);
+}
+
+@media screen and (min-width: 940px) {
+  .card {
+    max-width: 370px;
+    border-radius: 1.6rem;
+  }
+
+  .form__input[type="radio"] {
+    width: 2.8rem;
+  }
+}
